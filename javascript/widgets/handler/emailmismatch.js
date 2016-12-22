@@ -115,7 +115,7 @@ firebaseui.auth.widget.handler.handleEmailMismatchContinue_ =
   // and new component may need to be rendered.
   firebaseui.auth.storage.removePendingEmailCredential(app.getAppId());
   firebaseui.auth.widget.handler.common.setLoggedIn(
-      app, component, credential, user);
+      app, component, credential, false, user);
 };
 
 

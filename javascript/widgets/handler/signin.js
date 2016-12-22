@@ -40,7 +40,7 @@ firebaseui.auth.widget.handler.handleSignIn = function(
   var component = new firebaseui.auth.ui.page.SignIn(
       // On submit.
       function() {
-        firebaseui.auth.widget.handler.onSignInEmailEnter_(app, component);
+        firebaseui.auth.widget.handler.onSignInEmailEnter1_(app, component);
       },
       opt_email);
   component.render(container);
@@ -59,7 +59,7 @@ firebaseui.auth.widget.handler.handleSignIn = function(
  * @param {firebaseui.auth.ui.page.SignIn} component The UI component.
  * @private
  */
-firebaseui.auth.widget.handler.onSignInEmailEnter_ = function(app, component) {
+firebaseui.auth.widget.handler.onSignInEmailEnter1_ = function(app, component) {
   var email = component.checkAndGetEmail() || '';
   if (!email) {
     return;

@@ -25,6 +25,13 @@ providers (Google, Facebook, Twitter, Github) is not yet supported in
 non-browser environments (Cordova, React Native, Ionic...) nor Chrome
 extensions.
 
+## Changes In this repo
+1. UI change in the first screen showing email input and social logins.
+2. Email/Password registration will send verification email and show registration success screen instead of login.
+3. Email/Password login rejected if email is not verified.
+4. Add one more callback for signUpSuccess with user & password (if avaialble) after registartion and first social login.
+   
+
 ## Table of Contents
 
 1. [Installation](#installation)

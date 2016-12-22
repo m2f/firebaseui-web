@@ -758,6 +758,11 @@ firebaseui.auth.widget.handler.common.verifyPassword =
           goog.bind(app.getAuth().signInWithEmailAndPassword, app.getAuth())),
       [email, password],
       function(user) {
+        if(!user.emailVerified) {
+          //email not verified restricting login
+          showInvalidEmail({code: 101, message: 'Email not verified, please verify to login'});
+          return;
+        }
         // Pass password credential to complete sign-in to the original auth
         // instance.
         firebaseui.auth.widget.handler.common.setLoggedIn(

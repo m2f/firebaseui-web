@@ -186,6 +186,11 @@ firebaseui.auth.widget.handler.handleCallbackSuccess_ =
     function(app, component, user, credential) {
   firebaseui.auth.storage.removePendingEmailCredential(app.getAppId());
   firebaseui.auth.widget.handler.common.setLoggedIn(app, component, credential);
+  // make callback for signup as we do not know that whether this is first time or not
+  var callback = app.getConfig().getSignUpSuccessCallback();
+  if(callback) {
+    callback(user, null);
+  }
 };
 
 

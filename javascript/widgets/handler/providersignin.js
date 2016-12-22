@@ -54,6 +54,10 @@ firebaseui.auth.widget.handler.handleProviderSignIn = function(
               providerId);
         }
       },
+      // On Email Enter
+      function() {
+        firebaseui.auth.widget.handler.onSignInEmailEnter_(app, component);
+      },
       app.getConfig().getProviders());
   component.render(container);
   // Set current UI component.
@@ -62,6 +66,21 @@ firebaseui.auth.widget.handler.handleProviderSignIn = function(
   if (opt_infoBarMessage) {
     component.showInfoBar(opt_infoBarMessage);
   }
+};
+
+/**
+ * @param {firebaseui.auth.AuthUI} app The current Firebase UI instance whose
+ *     configuration is used.
+ * @param {firebaseui.auth.ui.page.SignIn} component The UI component.
+ * @private
+ */
+firebaseui.auth.widget.handler.onSignInEmailEnter_ = function(app, component) {
+  var email = component.checkAndGetEmail() || '';
+  if (!email) {
+    return;
+  }
+  firebaseui.auth.widget.handler.common.handleStartEmailFirstFlow(
+      app, component, email);
 };
 
 

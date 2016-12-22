@@ -18,6 +18,7 @@
 
 goog.provide('firebaseui.auth.CredentialHelper');
 goog.provide('firebaseui.auth.callback.signInSuccess');
+goog.provide('firebaseui.auth.callback.signUpSuccess');
 goog.provide('firebaseui.auth.widget.Config');
 
 goog.require('firebaseui.auth.Config');
@@ -90,6 +91,12 @@ firebaseui.auth.CredentialHelper = {
  */
 firebaseui.auth.callback.signInSuccess;
 
+/**
+ * The configuration sign-up success callback.
+ * @typedef {function(
+ *     !firebase.User, string=): void}
+ */
+firebaseui.auth.callback.signUpSuccess;
 
 /**
  * The accountchooser.com result codes.
@@ -376,6 +383,15 @@ firebaseui.auth.widget.Config.prototype.getSignInSuccessCallback = function() {
       this.getCallbacks_()['signInSuccess'] || null);
 };
 
+/**
+ * @return {?firebaseui.auth.callback.signUpSuccess} The callback to invoke when
+ *     the user signs up successfully. The signed in firebase user and password is passed
+ *     into the callback.
+ */
+firebaseui.auth.widget.Config.prototype.getSignUpSuccessCallback = function() {
+  return /** @type {?firebaseui.auth.callback.signUpSuccess} */ (
+      this.getCallbacks_()['signUpSuccess'] || null);
+};
 
 /**
  * @return {!Object} The callback configuration.

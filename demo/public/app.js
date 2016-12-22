@@ -23,8 +23,13 @@ var uiConfig = {
       handleSignedInUser(user);
       // Do not redirect.
       return false;
+    },
+    // Called when the user successfully sign up using email.
+    'signUpSuccess': function(user, password) {
+      console.log('user ', user, 'signed up using the password ', password);
     }
   },
+  credentialHelper: firebaseui.auth.CredentialHelper.NONE,
   // Opens IDP Providers sign-in flow in a popup.
   'signInFlow': 'popup',
   'signInOptions': [
@@ -37,13 +42,9 @@ var uiConfig = {
       provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
       scopes :[
         'public_profile',
-        'email',
-        'user_likes',
-        'user_friends'
+        'email'
       ]
     },
-    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-    firebase.auth.GithubAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID
   ],
   // Terms of service url.

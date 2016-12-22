@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>FirebaseUI Auth Demo</title>
-    <script src="https://www.gstatic.com/firebasejs/live/3.6/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.5/firebase.js"></script>
     <script src="config.js"></script>
     <script src="dist/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="dist/firebaseui.css" />
@@ -31,6 +31,7 @@
             }
           }
         },
+        credentialHelper: firebaseui.auth.CredentialHelper.NONE,
         'signInOptions': [
           // TODO(developer): Remove the providers you don't need for your app.
           firebase.auth.GoogleAuthProvider.PROVIDER_ID,

@@ -21,6 +21,11 @@ goog.provide('firebaseui.auth.ui.page.ProviderSignIn');
 goog.require('firebaseui.auth.soy2.page');
 goog.require('firebaseui.auth.ui.element.idps');
 goog.require('firebaseui.auth.ui.page.Base');
+goog.require('firebaseui.auth.ui.element');
+goog.require('firebaseui.auth.ui.element.email');
+goog.require('firebaseui.auth.ui.element.form');
+goog.require('goog.dom.selection');
+
 
 
 
@@ -35,6 +40,7 @@ goog.require('firebaseui.auth.ui.page.Base');
  */
 firebaseui.auth.ui.page.ProviderSignIn = function(
     onIdpClick,
+    onEmailEnter,
     providerIds,
     opt_domHelper) {
   firebaseui.auth.ui.page.ProviderSignIn.base(
@@ -45,6 +51,7 @@ firebaseui.auth.ui.page.ProviderSignIn = function(
       opt_domHelper,
       'providerSignIn');
   this.onIdpClick_ = onIdpClick;
+  this.onEmailEnter_ = onEmailEnter;
 };
 goog.inherits(firebaseui.auth.ui.page.ProviderSignIn,
     firebaseui.auth.ui.page.Base);
@@ -53,6 +60,10 @@ goog.inherits(firebaseui.auth.ui.page.ProviderSignIn,
 /** @override */
 firebaseui.auth.ui.page.ProviderSignIn.prototype.enterDocument = function() {
   this.initIdpList(this.onIdpClick_);
+  this.initEmailElement(this.onEmailEnter_);
+  var self = this;
+  // Handle a click on the submit button.
+  this.initFormElement(this.onEmailEnter_);
   firebaseui.auth.ui.page.ProviderSignIn.base(this, 'enterDocument');
 };
 
@@ -60,6 +71,7 @@ firebaseui.auth.ui.page.ProviderSignIn.prototype.enterDocument = function() {
 /** @override */
 firebaseui.auth.ui.page.ProviderSignIn.prototype.disposeInternal = function() {
   this.onIdpClick_ = null;
+  this.onEmailEnter_ = null;
   firebaseui.auth.ui.page.ProviderSignIn.base(this, 'disposeInternal');
 };
 
@@ -70,5 +82,22 @@ goog.mixin(
     {
       // For idps.
       initIdpList:
-          firebaseui.auth.ui.element.idps.initIdpList
+          firebaseui.auth.ui.element.idps.initIdpList,
+      // For email.
+      getEmailElement:
+          firebaseui.auth.ui.element.email.getEmailElement,
+      getEmailErrorElement:
+          firebaseui.auth.ui.element.email.getEmailErrorElement,
+      initEmailElement:
+          firebaseui.auth.ui.element.email.initEmailElement,
+      getEmail:
+          firebaseui.auth.ui.element.email.getEmail,
+      checkAndGetEmail:
+          firebaseui.auth.ui.element.email.checkAndGetEmail,
+
+      // For form.
+      getSubmitElement:
+          firebaseui.auth.ui.element.form.getSubmitElement,
+      initFormElement:
+          firebaseui.auth.ui.element.form.initFormElement
     });

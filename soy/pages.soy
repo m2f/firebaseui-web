@@ -148,6 +148,44 @@
   </div>
 {/template}
 
+/**
+ * Renders a notice page to indicate the sign up was successful and email was sent.
+ */
+{template .signupSuccessEmailSent}
+  {@param email: string} /** The email address to which the verification email has been sent. */
+  {@param? allowContinue: bool} /** Whether to show the continue button. */
+  <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
+      {css firebaseui-container} {css firebaseui-id-page-password-recovery-email-sent}">
+    <div class="{css firebaseui-card-header}">
+      <h1 class="{css firebaseui-title}">
+        {msg desc="Header of a notice page when the password recovery email has been sent."}
+          Check your email
+        {/msg}
+      </h1>
+    </div>
+    <div class="{css firebaseui-card-content}">
+      <p class="{css firebaseui-text}">
+        {msg desc="Detailed info of a notice page when the password recovery email has been sent."}
+          Registration was successful, follow the instructions sent to <strong>{$email}</strong> to activate your account by clicking on the activation link.
+        {/msg}
+      </p>
+    </div>
+    <div class="{css firebaseui-card-footer}">
+      {if $allowContinue}
+        <div class="{css firebaseui-form-actions}">
+          {call firebaseui.auth.soy2.element.submitButton}
+            {param label kind="text"}
+              {msg desc="Label of a button that finishes the password recovery flow."}
+                Done
+              {/msg}
+            {/param}
+          {/call}
+        </div>
+      {/if}
+    </div>
+  </div>
+{/template}
+
 
 /**
  * Renders a notice page to indicate the password recovery email has been sent.
@@ -602,20 +640,33 @@
  */
 {template .providerSignIn}
   {@param providerIds: list<string>} /** List of supported IdPs. */
-  <div class="{css firebaseui-container} {css firebaseui-page-provider-sign-in}{sp}
+  <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
+      {css firebaseui-container} {css firebaseui-page-provider-sign-in}{sp}
       {css firebaseui-id-page-provider-sign-in}">
-    <div class="{css firebaseui-card-content}">
       <form onsubmit="return false;">
-        <ul class="{css firebaseui-idp-list}">
+        <div class="{css firebaseui-card-header}">
+          <h1 class="firebaseui-title">Sign in with email or Create new account</h1>
+        </div>
+        <div class="{css firebaseui-card-content}">
+          <div class="{css firebaseui-relative-wrapper}">
+            {call firebaseui.auth.soy2.element.email data="all" /}
+          </div>
+          <div class="{css firebaseui-content-actions}">
+            <div class="{css firebaseui-form-actions}">
+              {call firebaseui.auth.soy2.element.submitButton /}
+            </div>
+          </div>
+          <div class="{css fireasbeui-divider}">OR</div>
           {foreach $providerId in $providerIds}
-            <li class="{css firebaseui-list-item}">
+            {if $providerId != 'password'}
               {call firebaseui.auth.soy2.element.idpButton}
                 {param providerId: $providerId /}
               {/call}
-            </li>
+            {/if}
           {/foreach}
-        </ul>
+        </div>
+        <div class="{css firebaseui-card-footer}">
+        </div>
       </form>
-    </div>
   </div>
 {/template}

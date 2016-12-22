@@ -18,6 +18,7 @@
 
 goog.provide('firebaseui.auth.ui.page.EmailChangeEmailSent');
 goog.provide('firebaseui.auth.ui.page.EmailChangeRevokeFailure');
+goog.provide('firebaseui.auth.ui.page.EmailVerificationEmailSent');
 goog.provide('firebaseui.auth.ui.page.EmailVerificationFailure');
 goog.provide('firebaseui.auth.ui.page.EmailVerificationSuccess');
 goog.provide('firebaseui.auth.ui.page.Notice');
@@ -122,6 +123,31 @@ firebaseui.auth.ui.page.PasswordRecoveryEmailSent = function(
 goog.inherits(firebaseui.auth.ui.page.PasswordRecoveryEmailSent,
     firebaseui.auth.ui.page.Notice);
 
+  /**
+   * Account creation email sent notice UI component.
+   * @param {string} email The email to which the email has been sent.
+   * @param {function()=} opt_onContinueClick Callback to invoke when the continue
+   *     button is clicked.
+   * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
+   * @constructor
+   * @extends {firebaseui.auth.ui.page.Notice}
+   */
+  firebaseui.auth.ui.page.EmailVerificationEmailSent = function(
+      email, opt_onContinueClick, opt_domHelper) {
+    firebaseui.auth.ui.page.EmailVerificationEmailSent.base(
+        this,
+        'constructor',
+        firebaseui.auth.soy2.page.signupSuccessEmailSent,
+        {
+          email: email,
+          allowContinue: !!opt_onContinueClick
+        },
+        opt_onContinueClick,
+        opt_domHelper,
+        'signupSuccessEmailSent');
+  };
+  goog.inherits(firebaseui.auth.ui.page.EmailVerificationEmailSent,
+      firebaseui.auth.ui.page.Notice);
 
 /**
  * Email verification success notice UI component.

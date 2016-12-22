@@ -22,6 +22,7 @@ goog.require('firebaseui.auth.log');
 goog.require('firebaseui.auth.soy2.strings');
 goog.require('firebaseui.auth.ui.element');
 goog.require('firebaseui.auth.ui.page.PasswordSignUp');
+goog.require('firebaseui.auth.ui.page.EmailVerificationEmailSent');
 goog.require('firebaseui.auth.widget.Handler');
 goog.require('firebaseui.auth.widget.HandlerName');
 goog.require('firebaseui.auth.widget.handler');
@@ -99,12 +100,19 @@ firebaseui.auth.widget.handler.onSignUpSubmit_ = function(app, component) {
       function(user) {
         // Sign up successful. We can now set the name.
         return app.registerPending(user.updateProfile({'displayName': name})
-            .then(function() {
-              // Pass password credential to complete the sign-in to original
-              // auth instance.
-              firebaseui.auth.widget.handler.common.setLoggedIn(
-                  app, component, emailPassCred);
-            }));
+            .then(function(){
+              //send verification email
+              user.sendEmailVerification()
+              .then(firebaseui.auth.widget.handler.onEmailSentSuccess_(app, component, user, password))
+              .catch(function(error){
+                firebaseui.auth.log.error(
+                    'sendEmailVerification: ' + goog.json.serialize(error));
+                var errorMessage =
+                    firebaseui.auth.widget.handler.common.getErrorMessage(error);
+                component.showInfoBar(errorMessage);
+              });
+            })
+        );
       },
       function(error) {
         // Ignore error if cancelled by the client.
@@ -143,6 +151,37 @@ firebaseui.auth.widget.handler.onSignUpSubmit_ = function(app, component) {
       }));
 };
 
+/**
+ * Handle verification email sent success
+ * @param {firebaseui.auth.AuthUI} app The current Firebase UI instance whose
+ *     configuration is used.
+ * @param component The UI component.
+ * @param user The current user
+ * @param {string} password for the user.
+ * @private
+ */
+firebaseui.auth.widget.handler.onEmailSentSuccess_ =
+  function(app, component, user, password){
+    var container = component.getContainer();
+    // Finish the flow by redirecting to sign-up success URL or mobile app.
+    var callback = app.getConfig().getSignUpSuccessCallback();
+    if(callback) {
+      callback(user, password);
+    }
+    // Render the notification UI.
+    component.dispose();
+    var noticeComponent = new firebaseui.auth.ui.page.EmailVerificationEmailSent(
+        /** @type {!string} */ (user.email),
+        function() {
+          // Return to start page after the password recovery flow.
+          noticeComponent.dispose();
+          firebaseui.auth.widget.handler.common.handleSignInStart(app,
+              container);
+        });
+    noticeComponent.render(container);
+    // Set current UI component.
+    app.setCurrentComponent(noticeComponent);
+  };
 
 /**
  * Process the email exists error.
