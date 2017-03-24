@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+// Use appropriate theme before build
+@import './teui-theme';
+//@import './trekkingui-theme';
+
 // Bundles together required MDL CSS components.
 @import '../node_modules/material-design-lite/src/variables';
 @import '../node_modules/material-design-lite/src/mixins';

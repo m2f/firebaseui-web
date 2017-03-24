@@ -36,6 +36,10 @@
   width: 100%;
 }
 
+.firebaseui-container.mdl-card {
+  min-height: 180px;
+}
+
 .firebaseui-card-header {
   padding: 24px 24px 0 24px;
 }
@@ -43,6 +47,7 @@
 
 .firebaseui-card-content {
   padding: 0 24px;
+  padding-top: 24px;
 }
 
 .firebaseui-card-footer {
@@ -106,11 +111,11 @@
   text-align:left;
 }
 
-
 .firebaseui-error-wrapper {
-  min-height: 16px;
+    min-height: 16px;
+    padding-top: 4px;
+    margin-bottom: 16px;
 }
-
 
 .firebaseui-list-item {
   direction: ltr;
@@ -131,6 +136,10 @@
   color: BLACK_ALPHA_54;
   direction: ltr;
   font-size: 16px;
+}
+
+.mdl-textfield__label:after {
+  bottom: 0;
 }
 
 /* Override MDL floating text field label color. */
@@ -154,6 +163,11 @@
 
 .firebaseui-textfield {
   width: 100%;
+  padding-bottom: 0;
+}
+
+.firebaseui-textfield-invalid {
+    margin-bottom: 0;
 }
 
 .fireasbeui-divider {
@@ -196,10 +210,6 @@
 /* Override MDL's error handling with our own.  */
 .firebaseui-textfield.mdl-textfield .firebaseui-input {
   border-color: BLACK_ALPHA_12;
-}
-
-.firebaseui-textfield.mdl-textfield .firebaseui-label::after {
-  background-color: #3f51b5;
 }
 
 .firebaseui-textfield-invalid.mdl-textfield .firebaseui-input {
@@ -372,7 +382,7 @@
   height: 2px;
   left: 0;
   position: absolute;
-  top: 55px;
+  top: 0;
   width: 100%;
 }
 

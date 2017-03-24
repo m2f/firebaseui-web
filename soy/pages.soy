@@ -53,9 +53,6 @@
   <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
       {css firebaseui-container} {css firebaseui-id-page-password-sign-in}">
     <form onsubmit="return false;">
-      <div class="{css firebaseui-card-header}">
-        <h1 class="{css firebaseui-title}">{msg desc="Header of a sign-in page."}Sign in{/msg}</h1>
-      </div>
       <div class="{css firebaseui-card-content}">
         {call firebaseui.auth.soy2.element.email data="all" /}
         {call firebaseui.auth.soy2.element.password /}
@@ -82,12 +79,12 @@
   <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
       {css firebaseui-container} {css firebaseui-id-page-password-sign-up}">
     <form onsubmit="return false;">
-      <div class="{css firebaseui-card-header}">
-        <h1 class="{css firebaseui-title}">
-          {msg desc="Header of a sign-up page."}Create account{/msg}
-        </h1>
-      </div>
       <div class="{css firebaseui-card-content}">
+        <h3 class="{css firebaseui-text}">
+          {msg desc="Information on how the user craetes account."}
+            Not registered, create a new account
+          {/msg}
+        </h3>
         {call firebaseui.auth.soy2.element.email data="all" /}
         {call firebaseui.auth.soy2.element.name data="all" /}
         {call firebaseui.auth.soy2.element.newPassword}
@@ -117,12 +114,12 @@
   <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
       {css firebaseui-container} {css firebaseui-id-page-password-recovery}">
     <form onsubmit="return false;">
-      <div class="{css firebaseui-card-header}">
-        <h1 class="{css firebaseui-title}">
-          {msg desc="Header of a password recovery page."}Recover password{/msg}
-        </h1>
-      </div>
       <div class="{css firebaseui-card-content}">
+        <h3 class="{css firebaseui-text}">
+          {msg desc="Information on how the user resets their password."}
+            Recover your password
+          {/msg}
+        </h3>
         <p class="{css firebaseui-text}">
           {msg desc="Information on how the user resets their password."}
             Get instructions sent to this email that explain how to reset your password
@@ -156,14 +153,12 @@
   {@param? allowContinue: bool} /** Whether to show the continue button. */
   <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
       {css firebaseui-container} {css firebaseui-id-page-password-recovery-email-sent}">
-    <div class="{css firebaseui-card-header}">
-      <h1 class="{css firebaseui-title}">
-        {msg desc="Header of a notice page when the password recovery email has been sent."}
-          Check your email
-        {/msg}
-      </h1>
-    </div>
     <div class="{css firebaseui-card-content}">
+      <h3 class="{css firebaseui-text}">
+        {msg desc="Header for success email."}
+          Email sent successfully
+        {/msg}
+      </h3>
       <p class="{css firebaseui-text}">
         {msg desc="Detailed info of a notice page when the password recovery email has been sent."}
           Registration was successful, follow the instructions sent to <strong>{$email}</strong> to activate your account by clicking on the activation link.
@@ -195,14 +190,12 @@
   {@param? allowContinue: bool} /** Whether to show the continue button. */
   <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
       {css firebaseui-container} {css firebaseui-id-page-password-recovery-email-sent}">
-    <div class="{css firebaseui-card-header}">
-      <h1 class="{css firebaseui-title}">
-        {msg desc="Header of a notice page when the password recovery email has been sent."}
-          Check your email
-        {/msg}
-      </h1>
-    </div>
     <div class="{css firebaseui-card-content}">
+      <h3 class="{css firebaseui-text}">
+        {msg desc="Header for success email."}
+          Recovery email sent successfully
+        {/msg}
+      </h3>
       <p class="{css firebaseui-text}">
         {msg desc="Detailed info of a notice page when the password recovery email has been sent."}
           Follow the instructions sent to <strong>{$email}</strong> to recover your password
@@ -249,9 +242,6 @@
   <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
       {css firebaseui-container} {css firebaseui-id-page-password-linking}">
     <form onsubmit="return false;">
-      <div class="{css firebaseui-card-header}">
-        <h1 class="{css firebaseui-title}">{msg desc="Header of a sign-in page."}Sign in{/msg}</h1>
-      </div>
       <div class="{css firebaseui-card-content}">
         <h2 class="{css firebaseui-subtitle}">
           {msg desc="Header of a page displayed when the user has signed in before with an email and
@@ -288,9 +278,6 @@
   <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
       {css firebaseui-container} {css firebaseui-id-page-federated-linking}">
     <form onsubmit="return false;">
-      <div class="{css firebaseui-card-header}">
-        <h1 class="{css firebaseui-title}">{msg desc="Header of a sign-in page."}Sign in{/msg}</h1>
-      </div>
       <div class="{css firebaseui-card-content}">
         <h2 class="{css firebaseui-subtitle}">
           {msg desc="Header of a page displayed when the user has signed in before with the provided
@@ -330,13 +317,6 @@
   <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
       {css firebaseui-container} {css firebaseui-id-page-password-reset}">
     <form onsubmit="return false;">
-      <div class="{css firebaseui-card-header}">
-        <h1 class="{css firebaseui-title}">
-          {msg desc="Header of a page where the user can reset their password."}
-            Reset your password
-          {/msg}
-        </h1>
-      </div>
       <div class="{css firebaseui-card-content}">
         {msg desc="Tell the user the email of the account for which the password is being
             changed."}
@@ -369,11 +349,6 @@
   {@param? allowContinue: bool} /** Whether to show the continue button. */
   <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
       {css firebaseui-container} {css firebaseui-id-page-password-reset-success}">
-    <div class="{css firebaseui-card-header}">
-      <h1 class="{css firebaseui-title}">
-        {msg desc="Header of a successful password change notice page"}Password changed{/msg}
-      </h1>
-    </div>
     <div class="{css firebaseui-card-content}">
       <p class="{css firebaseui-text}">
         {msg desc="Detailed info of a notice page that password reset succeeded."}
@@ -399,13 +374,6 @@
   {@param? allowContinue: bool} /** Whether to show the continue button. */
   <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
       {css firebaseui-container} {css firebaseui-id-page-password-reset-failure}">
-    <div class="{css firebaseui-card-header}">
-      <h1 class="{css firebaseui-title}">
-        {msg desc="Header of a password reset failure notice page"}
-          Try resetting your password again
-        {/msg}
-      </h1>
-    </div>
     <div class="{css firebaseui-card-content}">
       <p class="{css firebaseui-text}">
         {msg desc="Detailed info of a notice page that password reset failed."}
@@ -433,13 +401,6 @@
   <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
       {css firebaseui-container} {css firebaseui-id-page-email-change-revoke-success}">
     <form onsubmit="return false;">
-      <div class="{css firebaseui-card-header}">
-        <h1 class="{css firebaseui-title}">
-          {msg desc="Header of a page notifying that an email change request has been revoked"}
-            Updated email address
-          {/msg}
-        </h1>
-      </div>
       <div class="{css firebaseui-card-content}">
         <p class="{css firebaseui-text}">
           {msg desc="Detailed info of a notice page that an email change request has been revoked."}
@@ -477,13 +438,6 @@
   {@param? allowContinue: bool} /** Whether to show the continue button. */
   <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
       {css firebaseui-container} {css firebaseui-id-page-email-change-revoke-failure}">
-    <div class="{css firebaseui-card-header}">
-      <h1 class="{css firebaseui-title}">
-        {msg desc="Header of a page notifying that an email change revocation request has failed"}
-          Unable to update your email address
-        {/msg}
-      </h1>
-    </div>
     <div class="{css firebaseui-card-content}">
       {msg desc="Detailed info of a notice page that email change revocation has failed."}
         <p class="{css firebaseui-text}">
@@ -512,13 +466,6 @@
   {@param? allowContinue: bool} /** Whether to show the continue button. */
   <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
       {css firebaseui-container} {css firebaseui-id-page-email-verification-success}">
-    <div class="{css firebaseui-card-header}">
-      <h1 class="{css firebaseui-title}">
-        {msg desc="Header of a page telling the user their email address has been verified."}
-          Your email has been verified
-        {/msg}
-      </h1>
-    </div>
     <div class="{css firebaseui-card-content}">
       <p class="{css firebaseui-text}">
         {msg desc="Detailed info of a notice page that confirms user's email is verified"}
@@ -599,9 +546,6 @@
   <div class="{css mdl-card} {css mdl-shadow--2dp}{sp}
       {css firebaseui-container} {css firebaseui-id-page-email-mismatch}">
     <form onsubmit="return false;">
-      <div class="{css firebaseui-card-header}">
-        <h1 class="{css firebaseui-title}">{msg desc="Header of a sign-in page."}Sign in{/msg}</h1>
-      </div>
       <div class="{css firebaseui-card-content}">
         <h2 class="{css firebaseui-subtitle}">
           {msg desc="Message that asks the user if he wishes to continue signing in with the
@@ -644,9 +588,6 @@
       {css firebaseui-container} {css firebaseui-page-provider-sign-in}{sp}
       {css firebaseui-id-page-provider-sign-in}">
       <form onsubmit="return false;">
-        <div class="{css firebaseui-card-header}">
-          <h1 class="firebaseui-title">Sign in with email or Create new account</h1>
-        </div>
         <div class="{css firebaseui-card-content}">
           <div class="{css firebaseui-relative-wrapper}">
             {call firebaseui.auth.soy2.element.email data="all" /}

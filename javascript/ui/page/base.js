@@ -239,7 +239,11 @@ firebaseui.auth.ui.page.Base.prototype.startProcessing_ = function() {
     self.busyIndicator_ = goog.soy.renderAsElement(
         firebaseui.auth.soy2.element.busyIndicator, null, null,
         self.getDomHelper());
-    self.getElement().appendChild(self.busyIndicator_);
+    var parent = self.getElement();
+    console.log('Parent B ', parent);
+    parent.insertBefore(self.busyIndicator_, parent.firstChild);
+    console.log('Parent A ', parent);
+    //self.getElement().appendChild(self.busyIndicator_);
     self.performOnMdlComponents_(self.busyIndicator_, 'upgradeElement');
   }, firebaseui.auth.ui.page.SHOW_PROCESSING_DELAY_);
 };
